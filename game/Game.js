@@ -1,0 +1,47 @@
+'use strict';
+
+/**
+ * Game
+ * Created: 3/12/2026
+ */
+
+import { createDeck, formatCard, shuffle, sortHand } from '../cards/index.js';
+import { createPlayers, dealCards } from '../players/players.js';
+import { playRound } from './round.js';
+import { printRound } from '../ui/printRound.js';
+
+export class Game {
+  constructor(playersCount) {
+    this.playersCount = playersCount;
+    this.players = [];
+    this.deck = [];
+  }
+
+  start() {
+    this.deck = createDeck();
+
+    shuffle(this.deck);
+
+    this.players = createPlayers(this.playersCount);
+
+    dealCards(this.deck, this.players, 3);
+
+    for (const player of this.players) {
+      player.sortHand(sortHand);
+    }
+  }
+
+  playRound() {
+    const result = playRound(this.players);
+
+    printRound(result);
+  }
+
+  printResult() {
+    console.log('\nRound result');
+
+    for (const player of this.players) {
+      console.log(`Player ${player.id}: ${player.tricks} tricks`);
+    }
+  }
+}
