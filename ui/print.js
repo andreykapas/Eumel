@@ -9,7 +9,11 @@ import { formatCard } from '../cards/index.js';
 
 export function printHands(hands) {
   for (let i = 0; i < hands.length; i++) {
-    const hand = hands[i].map(formatCard).join(' ');
+    // const hand = hands[i].map(formatCard).join(' ');
+    const hand = hands[i]
+      .map((card, cardIndex) => `${cardIndex}: ${formatCard(card)}`)
+      .join(' ');
+
     console.log(`Player ${i} hand: ${hand}`);
   }
 }
