@@ -5,7 +5,7 @@
  * Created: 3/12/2026
  */
 
-import { createDeck, formatCard, shuffle, sortHand } from '../cards/index.js';
+import { createDeck, shuffle, sortHand } from '../cards/index.js';
 import { createPlayers, dealCards } from '../players/players.js';
 import { playRound } from './round.js';
 import { printRound } from '../ui/printRound.js';
@@ -31,8 +31,8 @@ export class Game {
     }
   }
 
-  playRound() {
-    const result = playRound(this.players);
+  async playRound() {
+    const result = await playRound(this.players);
 
     printRound(result);
   }

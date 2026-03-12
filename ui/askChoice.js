@@ -1,6 +1,7 @@
 'use strict';
 
 import { ask } from './input.js';
+import { formatCard } from '../cards/index.js';
 
 /**
  * askChoice
@@ -10,7 +11,9 @@ import { ask } from './input.js';
 export async function askChoice(message, options) {
   console.log(`\n${message}\n`);
 
-  options.forEach((option, index) => console.log(`${index + 1}) ${option}`));
+  options.forEach((option, index) =>
+    console.log(`${index + 1}) ${formatCard(option)}`)
+  );
 
   while (true) {
     const answer = await ask('> ');

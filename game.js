@@ -7,8 +7,12 @@ import { Game } from './game/Game.js';
  * Created: 3/11/2026
  */
 
-const game = new Game(3);
+async function main() {
+  const game = new Game(3);
 
-game.start();
-game.playRound();
-game.printResult();
+  game.start();
+  await game.playRound();
+  game.printResult();
+}
+
+main();

@@ -7,7 +7,7 @@ import { runTrick } from './trick.js';
  * Created: 3/12/2026
  */
 
-export function playRound(players) {
+export async function playRound(players) {
   const tricksCount = players[0].cardsCount();
 
   const tricks = [];
@@ -17,7 +17,7 @@ export function playRound(players) {
   for (let round = 0; round < tricksCount; round++) {
     const hands = players.map((p) => p.hand);
 
-    const { table, winner } = runTrick(players, startingPlayer);
+    const { table, winner } = await runTrick(players, startingPlayer);
 
     players[winner.playerId].winTrick();
 

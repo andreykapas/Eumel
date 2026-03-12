@@ -1,6 +1,7 @@
 'use strict';
 
 import { rankOrder, suitOrder } from '../cards/index.js';
+import { askChoice } from '../ui/askChoice.js';
 
 /**
  * trick
@@ -27,13 +28,18 @@ export function determineTrickWinner(table) {
   return winner;
 }
 
-export function playTrick(players, startingPlayer) {
+export async function playTrick(players, startingPlayer) {
   const table = [];
 
   for (let i = 0; i < players.length; i++) {
     const player = players[(startingPlayer + i) % players.length];
 
-    const card = player.playCard();
+    const choice = await askChoice(
+      `Player ${player.id}, choose card, please`,
+      player.hand
+    );
+
+    const card = player.playCard(choice);
 
     const move = {
       playerId: player.id,
@@ -46,8 +52,8 @@ export function playTrick(players, startingPlayer) {
   return table;
 }
 
-export function runTrick(players, startingPlayer) {
-  const table = playTrick(players, startingPlayer);
+export async function runTrick(players, startingPlayer) {
+  const table = await playTrick(players, startingPlayer);
 
   const winner = determineTrickWinner(table);
 
