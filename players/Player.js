@@ -30,8 +30,14 @@ export class Player {
     return this._hand.length;
   }
 
-  playCard() {
-    return this._hand.pop();
+  playCard(card = this._hand[0]) {
+    const index = this._hand.findIndex((c) => c === card);
+
+    if (index === -1) {
+      throw new Error(`"Card not in hand"`);
+    }
+
+    return this._hand.splice(index, 1)[0];
   }
 
   winTrick() {
