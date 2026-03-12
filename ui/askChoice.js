@@ -8,12 +8,18 @@ import { ask } from './input.js';
  */
 
 export async function askChoice(message, options) {
-  console.log(message);
+  console.log(`\n${message}\n`);
 
   options.forEach((option, index) => console.log(`${index + 1}) ${option}`));
 
-  const answer = await ask('> ');
-  const index = Number(answer) - 1;
+  while (true) {
+    const answer = await ask('> ');
+    const index = Number(answer) - 1;
 
-  return options[index];
+    if (Number.isInteger(index) && index >= 0 && index < options.length) {
+      return options[index];
+    }
+
+    console.log('Invalid choice. Try again.');
+  }
 }
