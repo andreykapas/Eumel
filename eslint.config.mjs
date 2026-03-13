@@ -6,15 +6,15 @@ import prettierConfig from 'eslint-config-prettier';
 
 export default defineConfig([
   {
-    files: ['**/*.{js,mjs,cjs}'],
-    plugins: { js },
+    files: ['**/*.js'],
+    plugins: { js, prettier },
     extends: ['js/recommended'],
-    languageOptions: { globals: globals.browser },
-  },
-  { files: ['**/*.js'], languageOptions: { sourceType: 'commonjs' } },
-  {
-    plugins: {
-      prettier,
+    languageOptions: {
+      sourceType: 'module',
+      ecmaVersion: 'latest',
+      globals: {
+        ...globals.node,
+      },
     },
     rules: {
       'prettier/prettier': 'error',
