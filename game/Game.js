@@ -41,7 +41,7 @@ export class Game {
     console.log('\nRound result');
 
     for (const player of this.players) {
-      console.log(`Player ${player.id}: ${player.tricks} tricks`);
+      console.log(`Player ${player.id}: ${player.roundTricks} tricks`);
     }
   }
 }

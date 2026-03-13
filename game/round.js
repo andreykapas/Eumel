@@ -1,6 +1,6 @@
 'use strict';
 
-import { runTrick } from './trick.js';
+import { countScores, makeBids, playTricks } from './roundLogic.js';
 
 /**
  * round
@@ -10,26 +10,13 @@ import { runTrick } from './trick.js';
 export async function playRound(players) {
   const tricksCount = players[0].cardsCount();
 
+  await makeBids(players, tricksCount);
+
   const tricks = [];
 
-  let startingPlayer = 0;
+  await playTricks(tricksCount, players, tricks);
 
-  for (let round = 0; round < tricksCount; round++) {
-    const hands = players.map((p) => p.hand);
-
-    const { table, winner } = await runTrick(players, startingPlayer);
-
-    players[winner.playerId].winTrick();
-
-    tricks.push({
-      leader: startingPlayer,
-      hands,
-      table,
-      winner,
-    });
-
-    startingPlayer = winner.playerId;
-  }
+  countScores(players);
 
   return {
     players,

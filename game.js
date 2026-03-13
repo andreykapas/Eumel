@@ -1,6 +1,7 @@
 'use strict';
 
 import { Game } from './game/Game.js';
+import { close } from './ui/input.js';
 
 /**
  * game
@@ -10,9 +11,13 @@ import { Game } from './game/Game.js';
 async function main() {
   const game = new Game(3);
 
-  game.start();
-  await game.playRound();
-  game.printResult();
+  try {
+    game.start();
+    await game.playRound();
+    game.printResult();
+  } finally {
+    close();
+  }
 }
 
 main();

@@ -11,6 +11,7 @@ export class Player {
     this._hand = [];
     this.bid = 0;
     this.tricks = 0;
+    this.roundTricks = 0;
     this.score = 0;
   }
 
