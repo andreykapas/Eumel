@@ -15,17 +15,30 @@ export const countScores = (players) => {
     const points =
       player.bid === player.tricks ? 10 + player.tricks : player.tricks;
 
+    player.roundPoints = points;
     player.score += points;
 
     player.tricks = 0;
   }
 };
 
-export const makeBids = async (players, tricksCount) => {
+export const findRoundWinner = (players) => {
+  let winner = players[0];
+
+  for (const player of players) {
+    if (player.roundPoints > winner.roundPoints) {
+      winner = player;
+    }
+  }
+
+  return winner.id;
+};
+
+export const makeBids = async (players, tricksCount, startingPlayer) => {
   let sumBids = 0;
 
   for (let i = 0; i < players.length; i++) {
-    const player = players[i];
+    const player = players[(startingPlayer + i) % players.length];
     const isLastPlayer = i === players.length - 1;
     let forbiddenBid;
 
@@ -38,8 +51,13 @@ export const makeBids = async (players, tricksCount) => {
   }
 };
 
-export const playTricks = async (tricksCount, players, tricks) => {
-  let startingPlayer = 0;
+export const playTricks = async (
+  tricksCount,
+  players,
+  tricks,
+  startingPlayer
+) => {
+  startingPlayer = (startingPlayer + players.length - 1) % players.length;
 
   for (let round = 0; round < tricksCount; round++) {
     const hands = players.map((p) => p.hand);

@@ -12,6 +12,7 @@ export class Player {
     this.bid = 0;
     this.tricks = 0;
     this.roundTricks = 0;
+    this.roundPoints = 0;
     this.score = 0;
   }
 
@@ -21,10 +22,6 @@ export class Player {
 
   sortHand(sortFn) {
     sortFn(this._hand);
-  }
-
-  forEachCard(callback) {
-    this._hand.forEach(callback);
   }
 
   cardsCount() {
