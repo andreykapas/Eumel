@@ -15,6 +15,10 @@ export const countScores = (players) => {
     const points =
       player.bid === player.tricks ? 10 + player.tricks : player.tricks;
 
+    if (player.bid === player.tricks) {
+      player.hits++;
+    }
+
     player.roundPoints = points;
     player.score += points;
 
@@ -32,6 +36,18 @@ export const findRoundWinner = (players) => {
   }
 
   return winner.id;
+};
+
+export const findMostAccuratePlayer = (players) => {
+  let best = players[0];
+
+  for (const player of players) {
+    if (player.hits > best.hits) {
+      best = player;
+    }
+  }
+
+  return best.id;
 };
 
 export const makeBids = async (players, tricksCount, startingPlayer) => {

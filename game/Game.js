@@ -9,6 +9,7 @@ import { createDeck, shuffle, sortHand } from '../cards/index.js';
 import { createPlayers, dealCards } from '../players/players.js';
 import { playRound } from './round.js';
 import { printRound } from '../ui/printRound.js';
+import { findMostAccuratePlayer } from './roundLogic.js';
 
 export class Game {
   constructor(playersCount) {
@@ -43,9 +44,12 @@ export class Game {
   printResult() {
     console.log('\nRound result');
 
+    const best = findMostAccuratePlayer(this.players);
+    this.players[best].score += 10;
+
     for (const player of this.players) {
       console.log(
-        `Player ${player.id}: ${player.roundTricks} tricks, ${player.roundPoints} points (total: ${player.score})`
+        `Player ${player.id}: ${player.roundTricks} tricks, ${player.roundPoints} points (total: ${player.score}), hints: ${player.hits}`
       );
     }
   }
