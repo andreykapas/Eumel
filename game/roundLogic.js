@@ -62,7 +62,13 @@ export const makeBids = async (players, tricksCount, startingPlayer) => {
       forbiddenBid = tricksCount - sumBids;
     }
 
-    player.bid = await askBid(player.id, tricksCount, forbiddenBid);
+    player.bid = await askBid(
+      players,
+      player.id,
+      player.hand,
+      tricksCount,
+      forbiddenBid
+    );
     sumBids += player.bid;
   }
 };
