@@ -38,8 +38,8 @@ export async function playTrick(players, startingPlayer) {
     let options = player.hand;
 
     if (leadSuit) {
-      const sameSuit = player.hand.filter((c) => c.suit === leadSuit);
-      options = sameSuit.length ? sameSuit : options;
+      const sameSuit = options.filter((c) => c.suit === leadSuit);
+      if (sameSuit.length) options = sameSuit;
     }
 
     const choice = await askChoice(
