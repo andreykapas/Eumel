@@ -45,7 +45,7 @@ export class Game {
 
     for (const player of this.players) {
       console.log(
-        `Player ${player.id}: ${player.roundTricks} tricks, ${player.roundPoints} points (total: ${player.score})`
+        `Player ${player.id}: ${player.roundTricks} tricks, ${player.roundPoints} points (total: ${player.score}), hits: ${player.hits}`
       );
     }
   }
