@@ -16,6 +16,7 @@ export class Game {
     this.players = [];
     this.deck = [];
     this.startingPlayer = 0;
+    this.onMove = (_move, _table) => {};
   }
 
   start() {
@@ -33,7 +34,11 @@ export class Game {
   }
 
   async playRound() {
-    const result = await playRound(this.players, this.startingPlayer);
+    const result = await playRound(
+      this.players,
+      this.startingPlayer,
+      this.onMove
+    );
 
     this.startingPlayer = result.roundWinner;
 

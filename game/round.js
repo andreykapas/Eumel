@@ -12,14 +12,14 @@ import {
  * Created: 3/12/2026
  */
 
-export async function playRound(players, startingPlayer) {
+export async function playRound(players, startingPlayer, onMove) {
   const tricksCount = players[0].cardsCount();
 
   await makeBids(players, tricksCount, startingPlayer);
 
   const tricks = [];
 
-  await playTricks(tricksCount, players, tricks, startingPlayer);
+  await playTricks(tricksCount, players, tricks, startingPlayer, onMove);
 
   countScores(players);
 

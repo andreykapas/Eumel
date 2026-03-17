@@ -28,7 +28,7 @@ export function determineTrickWinner(table) {
   return winner;
 }
 
-export async function playTrick(players, startingPlayer) {
+export async function playTrick(players, startingPlayer, onMove) {
   const table = [];
   let leadSuit = null;
 
@@ -59,13 +59,17 @@ export async function playTrick(players, startingPlayer) {
     };
 
     table.push(move);
+
+    if (onMove) {
+      onMove(move, table);
+    }
   }
 
   return table;
 }
 
-export async function runTrick(players, startingPlayer) {
-  const table = await playTrick(players, startingPlayer);
+export async function runTrick(players, startingPlayer, onMove) {
+  const table = await playTrick(players, startingPlayer, onMove);
 
   const winner = determineTrickWinner(table);
 
