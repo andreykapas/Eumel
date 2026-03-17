@@ -30,16 +30,28 @@ export function determineTrickWinner(table) {
 
 export async function playTrick(players, startingPlayer) {
   const table = [];
+  let leadSuit = null;
 
   for (let i = 0; i < players.length; i++) {
     const player = players[(startingPlayer + i) % players.length];
 
+    let options = player.hand;
+
+    if (leadSuit) {
+      const sameSuit = player.hand.filter((c) => c.suit === leadSuit);
+      options = sameSuit.length ? sameSuit : options;
+    }
+
     const choice = await askChoice(
       `Player ${player.id}, choose card, please`,
-      player.hand
+      options
     );
 
     const card = player.playCard(choice);
+
+    if (!leadSuit) {
+      leadSuit = card.suit;
+    }
 
     const move = {
       playerId: player.id,
