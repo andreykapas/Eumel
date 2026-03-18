@@ -11,6 +11,7 @@ import { playRound } from './round.js';
 import { printRound } from '../ui/printRound.js';
 import { Table } from '../ui/table.js';
 import { printTable } from '../ui/printTable.js';
+import { printWinner } from '../ui/printWinner.js';
 
 export class Game {
   constructor(playersCount) {
@@ -26,8 +27,7 @@ export class Game {
     };
 
     this.onTrickEnd = (trick) => {
-      console.log(`Winner: Player ${trick.winner.playerId}`);
-      console.log('------------------');
+      printWinner(trick);
       this.table.clear();
     };
   }
