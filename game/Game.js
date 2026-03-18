@@ -9,6 +9,7 @@ import { createDeck, shuffle, sortHand } from '../cards/index.js';
 import { createPlayers, dealCards } from '../players/players.js';
 import { playRound } from './round.js';
 import { printRound } from '../ui/printRound.js';
+import { Table } from '../ui/table.js';
 
 export class Game {
   constructor(playersCount) {
@@ -16,7 +17,11 @@ export class Game {
     this.players = [];
     this.deck = [];
     this.startingPlayer = 0;
-    this.onMove = (_move, _table) => {};
+
+    this.table = new Table();
+    this.onMove = (move, table) => {
+      this.table.addMove(move);
+    };
   }
 
   start() {
