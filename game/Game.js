@@ -24,6 +24,11 @@ export class Game {
       this.table.addMove(move);
       printTable(this.table);
     };
+
+    this.onTrickEnd = (trick) => {
+      console.log(`Winner: Player ${trick.winner.playerId}`);
+      this.table.clear();
+    };
   }
 
   start() {
@@ -47,8 +52,6 @@ export class Game {
       this.onMove,
       this.onTrickEnd
     );
-
-    this.table.clear();
 
     this.startingPlayer = result.roundWinner;
 
