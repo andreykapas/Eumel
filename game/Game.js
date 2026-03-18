@@ -57,7 +57,7 @@ export class Game {
   }
 
   printResult() {
-    console.log('\nRound result');
+    console.log('\n=== Round result ===');
 
     for (const player of this.players) {
       console.log(
