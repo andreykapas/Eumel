@@ -14,7 +14,6 @@ async function main() {
   try {
     game.start();
     await game.playRound();
-    game.printResult();
   } finally {
     close();
   }

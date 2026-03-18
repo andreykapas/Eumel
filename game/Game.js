@@ -11,6 +11,7 @@ import { playRound } from './round.js';
 import { Table } from '../ui/table.js';
 import { printTable } from '../ui/printTable.js';
 import { printWinner } from '../ui/printWinner.js';
+import { printResult } from '../ui/printResult.js';
 
 export class Game {
   constructor(playersCount) {
@@ -27,11 +28,6 @@ export class Game {
 
     this.table = new Table();
     this.onMove = (move) => {
-      // if (this.table.moves.length === 0) {
-      //   this.trickNumber++;
-      //   console.log(`\n--- Trick ${this.trickNumber} ---`);
-      // }
-
       this.table.addMove(move);
       printTable(this.table);
     };
@@ -68,15 +64,7 @@ export class Game {
     );
 
     this.startingPlayer = result.roundWinner;
-  }
 
-  printResult() {
-    console.log('\n=== Round result ===');
-
-    for (const player of this.players) {
-      console.log(
-        `Player ${player.id}: ${player.roundTricks} tricks, ${player.roundPoints} points (total: ${player.score}), hits: ${player.hits}`
-      );
-    }
+    printResult(this.players);
   }
 }
