@@ -20,7 +20,7 @@ export class Game {
     this.startingPlayer = 0;
 
     this.table = new Table();
-    this.onMove = (move, table) => {
+    this.onMove = (move) => {
       this.table.addMove(move);
       printTable(this.table);
     };
