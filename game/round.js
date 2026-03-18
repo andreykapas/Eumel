@@ -19,7 +19,14 @@ export async function playRound(players, startingPlayer, onMove, onTrickEnd) {
 
   const tricks = [];
 
-  await playTricks(tricksCount, players, tricks, startingPlayer, onMove);
+  await playTricks(
+    tricksCount,
+    players,
+    tricks,
+    startingPlayer,
+    onMove,
+    onTrickEnd
+  );
 
   countScores(players);
 
