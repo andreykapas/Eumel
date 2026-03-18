@@ -47,6 +47,8 @@ export class Game {
       this.onMove
     );
 
+    this.table.clear();
+
     this.startingPlayer = result.roundWinner;
 
     printRound(result);
