@@ -18,6 +18,7 @@ export class Game {
     this.players = [];
     this.deck = [];
     this.startingPlayer = 0;
+    this.trickNumber = 0;
 
     this.table = new Table();
     this.onMove = (move) => {
