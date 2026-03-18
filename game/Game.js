@@ -27,6 +27,7 @@ export class Game {
 
     this.onTrickEnd = (trick) => {
       console.log(`Winner: Player ${trick.winner.playerId}`);
+      console.log('------------------');
       this.table.clear();
     };
   }
