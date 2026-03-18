@@ -22,6 +22,10 @@ export class Game {
 
     this.table = new Table();
     this.onMove = (move) => {
+      if (this.table.moves.length === 0) {
+        console.log(`\n--- Trick ${this.trickNumber + 1} ---`);
+      }
+
       this.table.addMove(move);
       printTable(this.table);
     };
