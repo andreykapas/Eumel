@@ -85,6 +85,10 @@ export const playTricks = async (
   startingPlayer = (startingPlayer + players.length - 1) % players.length;
 
   for (let round = 0; round < tricksCount; round++) {
+    if (onTrickStart) {
+      onTrickStart(round);
+    }
+
     const hands = players.map((player) => player.hand);
     const { table, winner } = await runTrick(players, startingPlayer, onMove);
     players[winner.playerId].winTrick();
