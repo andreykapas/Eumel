@@ -78,7 +78,8 @@ export const playTricks = async (
   players,
   tricks,
   startingPlayer,
-  onMove
+  onMove,
+  onTrickEnd
 ) => {
   startingPlayer = (startingPlayer + players.length - 1) % players.length;
 
