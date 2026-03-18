@@ -10,6 +10,7 @@ import { createPlayers, dealCards } from '../players/players.js';
 import { playRound } from './round.js';
 import { printRound } from '../ui/printRound.js';
 import { Table } from '../ui/table.js';
+import { printTable } from '../ui/printTable.js';
 
 export class Game {
   constructor(playersCount) {
@@ -21,6 +22,7 @@ export class Game {
     this.table = new Table();
     this.onMove = (move, table) => {
       this.table.addMove(move);
+      printTable(this.table);
     };
   }
 
