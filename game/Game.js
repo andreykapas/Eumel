@@ -8,7 +8,6 @@
 import { createDeck, shuffle, sortHand } from '../cards/index.js';
 import { createPlayers, dealCards } from '../players/players.js';
 import { playRound } from './round.js';
-import { printRound } from '../ui/printRound.js';
 import { Table } from '../ui/table.js';
 import { printTable } from '../ui/printTable.js';
 import { printWinner } from '../ui/printWinner.js';
@@ -55,8 +54,6 @@ export class Game {
     );
 
     this.startingPlayer = result.roundWinner;
-
-    printRound(result);
   }
 
   printResult() {
