@@ -44,7 +44,8 @@ export class Game {
     const result = await playRound(
       this.players,
       this.startingPlayer,
-      this.onMove
+      this.onMove,
+      this.onTrickEnd
     );
 
     this.table.clear();
