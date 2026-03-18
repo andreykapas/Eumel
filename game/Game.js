@@ -27,6 +27,7 @@ export class Game {
     };
 
     this.onTrickEnd = (trick) => {
+      this.trickNumber++;
       printWinner(trick);
       this.table.clear();
     };
