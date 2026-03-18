@@ -20,18 +20,23 @@ export class Game {
     this.startingPlayer = 0;
     this.trickNumber = 0;
 
+    this.onTrickStart = (round) => {
+      this.trickNumber = round + 1;
+      console.log(`\n--- Trick ${this.trickNumber} ---`);
+    };
+
     this.table = new Table();
     this.onMove = (move) => {
-      if (this.table.moves.length === 0) {
-        console.log(`\n--- Trick ${this.trickNumber + 1} ---`);
-      }
+      // if (this.table.moves.length === 0) {
+      //   this.trickNumber++;
+      //   console.log(`\n--- Trick ${this.trickNumber} ---`);
+      // }
 
       this.table.addMove(move);
       printTable(this.table);
     };
 
     this.onTrickEnd = (trick) => {
-      this.trickNumber++;
       printWinner(trick);
       this.table.clear();
     };
@@ -52,11 +57,14 @@ export class Game {
   }
 
   async playRound() {
+    this.trickNumber = 0;
+
     const result = await playRound(
       this.players,
       this.startingPlayer,
       this.onMove,
-      this.onTrickEnd
+      this.onTrickEnd,
+      this.onTrickStart
     );
 
     this.startingPlayer = result.roundWinner;
