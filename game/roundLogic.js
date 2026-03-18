@@ -95,6 +95,10 @@ export const playTricks = async (
       winner,
     });
 
+    if (onTrickEnd) {
+      onTrickEnd({ leader: startingPlayer, table, winner });
+    }
+
     startingPlayer = winner.playerId;
   }
 };
