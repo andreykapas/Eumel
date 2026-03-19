@@ -11,11 +11,11 @@ import { formatCard } from '../cards/index.js';
 export async function askChoice(message, options) {
   console.log(`\n${message}\n`);
 
-  options.forEach((option, index) => {
-    const text = typeof option === 'object' ? formatCard(option) : option;
+  const cards = options
+    .map((card, i) => `${i + 1}) ${formatCard(card)}`)
+    .join('\n');
 
-    console.log(`${index + 1}) ${text}`);
-  });
+  console.log(`Your hand:\n${cards}\n`);
 
   while (true) {
     const answer = await ask('> ');
