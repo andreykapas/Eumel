@@ -2,6 +2,7 @@
 
 import { askBid } from '../ui/askBid.js';
 import { runTrick } from './trick.js';
+import { onAskChoice } from '../ui/cli/onAskChoice.js';
 
 /**
  * roundLogic
