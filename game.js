@@ -2,6 +2,7 @@
 
 import { Game } from './game/Game.js';
 import { close } from './ui/input.js';
+import { onAskChoice } from './ui/cli/onAskChoice.js';
 
 /**
  * game
@@ -10,6 +11,8 @@ import { close } from './ui/input.js';
 
 async function main() {
   const game = new Game(3);
+
+  game.onAskChoice = onAskChoice;
 
   try {
     game.start();

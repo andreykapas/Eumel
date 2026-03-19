@@ -38,23 +38,7 @@ export class Game {
       this.table.clear();
     };
 
-    this.onAskChoice = async ({ player, options, leadSuit }) => {
-      console.log(`\nPlayer ${player.id}, choose card`);
-
-      if (leadSuit) {
-        console.log(`Lead suit: ${leadSuit}`);
-      }
-
-      const cards = options
-        .map((card, i) => `${i + 1}) ${card.suit} ${card.rank}`)
-        .join('\n');
-
-      console.log(`Available cards:\n${cards}`);
-
-      const { askChoice } = await import('../ui/askChoice.js');
-
-      return askChoice({ options });
-    };
+    this.onAskChoice = null;
   }
 
   start() {
