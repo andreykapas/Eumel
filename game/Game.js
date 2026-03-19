@@ -12,6 +12,7 @@ import { Table } from '../ui/table.js';
 import { printTable } from '../ui/printTable.js';
 import { printWinner } from '../ui/printWinner.js';
 import { printResult } from '../ui/printResult.js';
+import { printTrickStart } from '../ui/printTrickStart.js';
 
 export class Game {
   constructor(playersCount) {
@@ -23,7 +24,7 @@ export class Game {
 
     this.onTrickStart = (round) => {
       this.trickNumber = round + 1;
-      console.log(`\n--- Trick ${this.trickNumber} ---`);
+      printTrickStart(this.trickNumber);
     };
 
     this.table = new Table();
