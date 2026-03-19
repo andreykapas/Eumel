@@ -17,7 +17,8 @@ export async function playRound(
   startingPlayer,
   onMove,
   onTrickEnd,
-  onTrickStart
+  onTrickStart,
+  onAskChoice
 ) {
   const tricksCount = players[0].cardsCount();
 
@@ -32,7 +33,8 @@ export async function playRound(
     startingPlayer,
     onMove,
     onTrickEnd,
-    onTrickStart
+    onTrickStart,
+    onAskChoice
   );
 
   countScores(players);

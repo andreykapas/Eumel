@@ -37,6 +37,24 @@ export class Game {
       printWinner(trick);
       this.table.clear();
     };
+
+    this.onAskChoice = async ({ player, options, leadSuit }) => {
+      console.log(`\nPlayer ${player.id}, choose card`);
+
+      if (leadSuit) {
+        console.log(`Lead suit: ${leadSuit}`);
+      }
+
+      const cards = options
+        .map((card, i) => `${i + 1}) ${card.suit} ${card.rank}`)
+        .join('\n');
+
+      console.log(`Available cards:\n${cards}`);
+
+      const { askChoice } = await import('../ui/askChoice.js');
+
+      return askChoice({ options });
+    };
   }
 
   start() {
@@ -61,7 +79,8 @@ export class Game {
       this.startingPlayer,
       this.onMove,
       this.onTrickEnd,
-      this.onTrickStart
+      this.onTrickStart,
+      this.onAskChoice
     );
 
     this.startingPlayer = result.roundWinner;
